@@ -215,6 +215,161 @@ REFERENCES referenced_table(referenced_column);
 * Foreign Key column names do not need to match.
 * `VARCHAR` and `CHAR` are not the same.
 
+
+## 2. WHERE / AND / OR / NULL
+
+### 2.1 WHERE
+
+Filters rows based on a condition.
+
+**Syntax**
+```sql
+SELECT column1, column2
+FROM table_name
+WHERE condition;
+2.2 AND
+
+Returns rows only when all conditions are true.
+
+Syntax
+
+SELECT *
+FROM table_name
+WHERE condition1
+AND condition2;
+2.3 OR
+
+Returns rows when at least one condition is true.
+
+Syntax
+
+SELECT *
+FROM table_name
+WHERE condition1
+OR condition2;
+2.4 AND + OR
+
+AND has higher precedence than OR.
+
+Use parentheses when specific grouping is required.
+
+Syntax
+
+SELECT *
+FROM table_name
+WHERE condition1
+AND (condition2 OR condition3);
+2.5 NULL
+
+NULL represents a missing or unknown value.
+
+NULL is not 0 or an empty string.
+
+Syntax
+
+SELECT *
+FROM table_name
+WHERE column_name IS NULL;
+SELECT *
+FROM table_name
+WHERE column_name IS NOT NULL;
+2.6 Comparison Operators
+Operator	Meaning
+=	Equal
+<>	Not equal
+>	Greater than
+<	Less than
+>=	Greater than or equal
+<=	Less than or equal
+Common Mistakes
+Use IS NULL, not = NULL.
+AND has higher precedence than OR.
+Use parentheses when specific logical grouping is required.
+3. DISTINCT / ORDER BY
+3.1 DISTINCT
+
+Removes duplicate rows from the result.
+
+For multiple columns, uniqueness is checked based on the combination of selected columns.
+
+Syntax
+
+SELECT DISTINCT column_name
+FROM table_name;
+SELECT DISTINCT column1, column2
+FROM table_name;
+3.2 ORDER BY
+
+Sorts the result based on one or more columns.
+
+Syntax
+
+SELECT column1, column2
+FROM table_name
+ORDER BY column1 ASC;
+SELECT column1, column2
+FROM table_name
+ORDER BY column1 DESC;
+
+Multiple columns:
+
+SELECT column1, column2
+FROM table_name
+ORDER BY column1 ASC, column2 DESC;
+ASC → Ascending
+DESC → Descending
+ASC is the default.
+Common Mistakes
+DISTINCT applies to the combination of selected columns.
+In multiple-column sorting, the first column has higher priority.
+ORDER BY sorts the result; it does not modify stored data.
+4. INSERT / UPDATE / DELETE
+4.1 INSERT
+
+Adds new rows to a table.
+
+Syntax
+
+INSERT INTO table_name (column1, column2, column3)
+VALUES (value1, value2, value3);
+
+Without specifying column names:
+
+INSERT INTO table_name
+VALUES (value1, value2, value3);
+4.2 UPDATE
+
+Modifies existing rows.
+
+Syntax
+
+UPDATE table_name
+SET column1 = value1
+WHERE condition;
+
+Multiple columns:
+
+UPDATE table_name
+SET column1 = value1,
+    column2 = value2
+WHERE condition;
+4.3 DELETE
+
+Removes rows from a table.
+
+Syntax
+
+DELETE FROM table_name
+WHERE condition;
+
+To remove all rows:
+
+DELETE FROM table_name;
+Common Mistakes
+UPDATE / DELETE without WHERE can affect all rows.
+INSERT adds rows; UPDATE modifies existing rows.
+DELETE removes rows, not the table.
+When column names are omitted in INSERT, values must follow the table's column order.
 ---
 
 ```
